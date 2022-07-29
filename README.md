@@ -17,6 +17,9 @@ copy repo from github and clone into your own repo :)
 ## Usage
 Used to blog anout tech.
 
+Front end rendering image:
+
+
 ## License 
 MIT
 
