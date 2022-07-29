@@ -6,7 +6,6 @@ const router = express.Router()
 
 router.get('/', async function (req, res) {
     const allPosts = await postController.getAllPosts()
-    console.log(allPosts)
     res.render('home', { allPosts })
 })
 

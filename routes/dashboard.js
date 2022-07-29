@@ -11,8 +11,10 @@ router.use(function(req, res, next) {
     next()
 })
 
-router.get('/', function (req, res) {
-    res.render('dashboard')
+router.get('/', async function (req, res) {
+    const allPosts = await postController.getUserPosts(req.session.user_id)
+    console.log(allPosts)
+    res.render('dashboard', { allPosts})
 })
 
 router.get("/createpost", function (req, res) {

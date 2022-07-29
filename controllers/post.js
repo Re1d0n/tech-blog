@@ -27,7 +27,33 @@ async function getAllPosts() {
     })
 }
 
+async function getUserPosts(owner) {
+    const allPosts = await postModel.findAll({
+        where: {
+            owner
+        },
+        attributes: [
+            "id",
+            "title",
+            "content",
+            "created_at",
+        ],
+        include: [
+            {
+                model: userModel,
+                attributes: [
+                    "username",
+                ],
+            }
+        ]
+    });
+    return allPosts.map(function (post) {
+        return post.get({ plain: true });
+    })
+}
+
 module.exports = {
     addPost,
-    getAllPosts
+    getAllPosts,
+    getUserPosts,
 }
