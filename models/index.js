@@ -1,14 +1,24 @@
-const userModel= require("./user")
-const postModel= require("./post")
-const commentModel= require("./comment")
+const userModel = require("./user")
+const postModel = require("./post")
+const commentModel = require("./comment")
 
-userModel.hasMany(postModel)
-postModel.belongsTo(userModel)
+userModel.hasMany(postModel, {
+    foreignKey: "owner"
+})
+postModel.belongsTo(userModel, {
+    foreignKey: "owner"
+})
 
-postModel.hasMany(commentModel)
-commentModel.belongsTo(userModel)
+postModel.hasMany(commentModel, {
+    foreignKey: "post_id"
+})
+commentModel.belongsTo(postModel, {
+    foreignKey: "post_id"
+})
 
-commentModel.belongsTo(userModel)
+commentModel.belongsTo(userModel, {
+    foreignKey: "owner"
+})
 
 module.exports = {
     userModel, postModel, commentModel

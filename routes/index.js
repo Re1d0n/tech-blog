@@ -1,10 +1,13 @@
 const express = require('express')
 const userController = require("../controllers/user")
+const postController = require("../controllers/post")
 
 const router = express.Router()
 
-router.get('/', function (req, res) {
-    res.render('home')
+router.get('/', async function (req, res) {
+    const allPosts = await postController.getAllPosts()
+    console.log(allPosts)
+    res.render('home', { allPosts })
 })
 
 router.get('/signup', function (req, res) {
@@ -25,7 +28,7 @@ router.get('/login', function (req, res) {
 router.post("/login", async function (req, res) {
     const { email, password } = req.body
     const user = await userController.findUser(email, password)
-    if (!user){
+    if (!user) {
         res.redirect('/login')
         return
     }

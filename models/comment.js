@@ -24,10 +24,18 @@ Comment.init(
         owner: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: "user",
+                key: "id",
+            }
         },
-        post: {
+        post_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: "post",
+                key: "id",
+            }
         },
     },
     {
