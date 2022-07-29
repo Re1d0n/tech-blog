@@ -52,8 +52,32 @@ async function getUserPosts(owner) {
     })
 }
 
+async function findPost(id) {
+    const post = await postModel.findOne({
+        where: {
+            id
+        },
+        attributes: [
+            "id",
+            "title",
+            "content",
+            "created_at",
+        ],
+        include: [
+            {
+                model: userModel,
+                attributes: [
+                    "username",
+                ],
+            }
+        ]
+     });
+return post.get({ plain: true });
+} 
+
 module.exports = {
     addPost,
     getAllPosts,
     getUserPosts,
+    findPost,
 }

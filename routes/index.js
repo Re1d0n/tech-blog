@@ -35,4 +35,9 @@ router.post("/login", async function (req, res) {
     res.redirect('/dashboard')
 })
 
+router.get ("/viewpost/:id", async function (req, res) {
+    const post = await postController.findPost(req.params.id)
+    res.render("post",{post})
+})
+
 module.exports = router

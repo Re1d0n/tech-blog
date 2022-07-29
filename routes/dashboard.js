@@ -28,4 +28,8 @@ router.post("/createpost", async function (req, res) {
     res.redirect('/dashboard')
 })
 
+router.get("/editpost", function (req, res) {
+    res.render("createpost")
+})
+
 module.exports = router;
